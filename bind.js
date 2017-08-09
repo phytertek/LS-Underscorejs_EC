@@ -9,16 +9,20 @@
  */
 
 
- const _ = require('underscore');
+const _ = require('underscore');
 
- const obj = {
-   name: 'Bob'
+ class User {
+   constructor(name) {
+     this.name = name
+   }
  };
 
-let funct = (greeting) => {
-   return this.name + greeting
+const person = new User('Bob')
+
+function aFunction (greeting)  {
+   return `${greeting} ${this.name}`
  }
 
-funct = _.bind(funct, obj, 'Hi');
+const bound  = _.bind(aFunction, person, 'Hi');
 
-console.log(funct())
+console.log(bound())
